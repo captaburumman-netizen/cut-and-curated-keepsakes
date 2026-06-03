@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — Cut & Curated Keepsakes</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="">
+  <div id="nav-mount"></div>
+
+  <main class="success-wrap">
+    <div class="container">
+      <div class="success-card" id="success-content">
+        <!-- Content set by JS based on ?form= param -->
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/layout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const formType = params.get('form');
+      const card = document.getElementById('success-content');
+
+      if (formType === 'contact') {
+        card.innerHTML = `
+          <div class="success-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h1 style="font-size:2rem;margin-bottom:12px;">Message sent!</h1>
+          <p style="color:var(--text-muted);margin-bottom:32px;">Thank you for reaching out. I'll get back to you within 1–2 business days.</p>
+          <a href="index.html" class="btn btn-outline">Back to Home</a>
+        `;
+      } else if (formType === 'custom-order') {
+        card.innerHTML = `
+          <div class="success-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h1 style="font-size:2rem;margin-bottom:12px;">Request received!</h1>
+          <p style="color:var(--text-muted);margin-bottom:32px;">
+            I'm so excited to hear your idea! I'll be in touch within 1–2 business days with questions and a quote.
+          </p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="shop.html" class="btn btn-outline">Browse the Shop</a>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+          </div>
+        `;
+      } else {
+        // Payment success — clear cart
+        Cart.clearCart();
+        card.innerHTML = `
+          <div class="success-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="script" style="font-size:1.8rem;display:block;margin-bottom:12px;">Thank you so much!</span>
+          <h1 style="font-size:2rem;margin-bottom:16px;">Your order is confirmed ✦</h1>
+          <p style="color:var(--text-muted);margin-bottom:8px;">
+            I'll get started on your piece right away. You'll receive a confirmation email from Stripe, and I'll reach out if I have any questions about your personalization details.
+          </p>
+          <p style="color:var(--text-muted);margin-bottom:32px;font-size:.88rem;">
+            Questions? Email <a href="mailto:hello@cutandcuratedks.com" style="color:var(--gold);">hello@cutandcuratedks.com</a> or DM <a href="https://instagram.com/cutandcuratedks" target="_blank" rel="noopener noreferrer" style="color:var(--gold);">@cutandcuratedks</a>.
+          </p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="shop.html" class="btn btn-outline">Keep Shopping</a>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

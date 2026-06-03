@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart — Cut & Curated Keepsakes</title>
+  <meta name="description" content="Review your cart and proceed to secure checkout.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="shop">
+  <div id="nav-mount"></div>
+
+  <main class="cart-wrap">
+    <div class="container">
+      <h1 style="margin-bottom:40px;font-size:2.2rem;">Your Cart</h1>
+
+      <!-- Empty state -->
+      <div id="cart-empty" class="cart-empty-state" style="display:none;">
+        <div style="width:72px;height:72px;background:var(--blush-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--blush);">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        </div>
+        <h2 style="font-size:1.6rem;margin-bottom:12px;">Your cart is empty</h2>
+        <p style="color:var(--text-muted);margin-bottom:32px;">Find something beautiful to fill it with.</p>
+        <a href="shop.html" class="btn btn-primary btn-lg">Browse the Shop</a>
+      </div>
+
+      <!-- Cart with items -->
+      <div id="cart-summary" style="display:none;">
+        <div class="cart-layout">
+          <!-- Items column -->
+          <div>
+            <div id="cart-items-container" aria-live="polite" aria-label="Cart items"></div>
+            <div style="margin-top:24px;">
+              <a href="shop.html" class="btn btn-outline btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+
+          <!-- Summary column -->
+          <aside class="cart-summary-box" aria-label="Order summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="cart-subtotal">$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span>Calculated at checkout</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span id="cart-total-display">$0.00</span>
+            </div>
+
+            <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px;">
+              <button class="btn btn-primary btn-lg btn-full" id="checkout-btn" onclick="Cart.checkout()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                Proceed to Checkout
+              </button>
+              <p style="font-size:.75rem;color:var(--text-light);text-align:center;line-height:1.5;">
+                Secure checkout powered by Stripe. You'll choose shipping at checkout — local pickup in Edmond, OK is free.
+              </p>
+            </div>
+
+            <!-- Trust badges -->
+            <div style="display:flex;gap:16px;justify-content:center;margin-top:20px;padding-top:20px;border-top:1px solid var(--border-light);">
+              <div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-light);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Secure
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-light);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                All major cards
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-light);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Made to order
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Cart.renderCartPage();
+    });
+  </script>
+</body>
+</html>

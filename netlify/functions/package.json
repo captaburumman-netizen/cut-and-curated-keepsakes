@@ -1,0 +1,8 @@
+{
+  "name": "cut-and-curated-functions",
+  "version": "1.0.0",
+  "description": "Netlify serverless functions for Cut & Curated Keepsakes",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

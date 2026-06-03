@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Cut & Curated Keepsakes | Personalized Handmade Gifts Oklahoma</title>
+  <meta name="description" content="Browse our full collection of handcrafted personalized keepsakes — resin birth plaques, gift baskets, glitter pens, trinket trays, keychains & more. Free local pickup in Edmond, OK.">
+  <meta name="keywords" content="custom resin keepsakes shop, personalized gifts Oklahoma, handmade baby keepsakes, gift baskets Edmond OK, glitter pens, trinket trays pressed flowers">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="shop">
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- Page hero -->
+    <div class="page-hero">
+      <div class="container">
+        <span class="script" style="font-size:1.5rem;">Our Collection</span>
+        <h1>Shop Handcrafted Keepsakes</h1>
+        <p>Every piece is made to order with your personalization. Browse by category or explore everything below.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="shop-heading">
+      <div class="container">
+        <h2 id="shop-heading" class="visually-hidden">All Products</h2>
+
+        <!-- Category filters -->
+        <div class="filter-bar" id="category-filters" role="group" aria-label="Filter products by category"></div>
+
+        <!-- Product grid — populated by main.js -->
+        <div class="product-grid" id="shop-grid" aria-live="polite" aria-label="Product listings"></div>
+      </div>
+    </section>
+
+    <!-- Custom order nudge -->
+    <section class="section" style="background: linear-gradient(135deg, var(--blush-pale), var(--lavender-pale));" aria-labelledby="custom-nudge-heading">
+      <div class="container text-center">
+        <span class="script" style="font-size:1.5rem;">Don't see exactly what you need?</span>
+        <h2 id="custom-nudge-heading" style="margin-top:8px;">Let's create something just for you.</h2>
+        <div class="divider" style="margin-top:16px;margin-bottom:24px;"><div class="divider-diamond"></div></div>
+        <p style="max-width:500px;margin:0 auto 32px;color:var(--text-muted);">
+          We love bringing one-of-a-kind ideas to life. Tell us what you have in mind and we'll work together on something truly unique.
+        </p>
+        <a href="custom-orders.html" class="btn btn-primary btn-lg">Request a Custom Order</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day Gift Basket — Cut &amp; Curated Keepsakes</title>
+  <meta name="description" content="Valentine's gift basket with handmade keepsakes and chocolates.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="shop" data-subpage="true" data-product-id="gift-basket-valentines" itemscope itemtype="https://schema.org/Product">
+  <div id="nav-mount"></div>
+  <main class="product-page-wrap">
+    <div class="container">
+      <nav aria-label="Breadcrumb" class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span>
+        <a href="../shop.html">Shop</a>
+        <span class="breadcrumb-sep" aria-hidden="true">&rsaquo;</span>
+        <span aria-current="page">Valentine's Day Gift Basket</span>
+      </nav>
+      <div id="product-page-content"></div>
+    </div>
+    <section class="section" style="background:var(--cream-deep);" aria-labelledby="related-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="related-heading">You might also love</h2>
+        </div>
+        <div class="product-grid" id="related-grid"></div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-mount"></div>
+  <script src="../js/products.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/layout.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const relatedGrid = document.getElementById('related-grid');
+      if (!relatedGrid) return;
+      const related = PRODUCTS.filter(p => p.id !== 'gift-basket-valentines').slice(0, 3);
+      relatedGrid.innerHTML = related.map(rp => `
+        <article class="product-card">
+          <a href="${rp.id}.html" class="product-card-image-link" tabindex="-1" aria-hidden="true">
+            <div class="product-card-image">
+              <img src="../${rp.image}" alt="${rp.imageAlt}" loading="lazy"
+                onerror="this.src='../images/placeholder.svg'">
+            </div>
+          </a>
+          <div class="product-card-body">
+            <p class="product-card-category">${rp.categoryLabel}</p>
+            <h3 class="product-card-name"><a href="${rp.id}.html">${rp.name}</a></h3>
+            <div class="product-card-footer">
+              <span class="product-card-price">${rp.displayPrice}</span>
+              <a href="${rp.id}.html" class="btn btn-outline btn-sm">View</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
