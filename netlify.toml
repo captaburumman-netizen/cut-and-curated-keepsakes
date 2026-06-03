@@ -4,6 +4,13 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  # Required env vars (set in Netlify Dashboard → Site Settings → Environment Variables):
+  #   STRIPE_SECRET_KEY        — sk_live_... or sk_test_... from stripe.com/dashboard/apikeys
+  #   STRIPE_WEBHOOK_SECRET    — whsec_... from Stripe webhook endpoint settings
+  #   NETLIFY_IDENTITY_URL     — auto-set by Netlify when Identity is enabled (optional override)
+  #   LOW_STOCK_THRESHOLD      — integer, default 5 (units before "low stock" warning)
+  #   PLAUSIBLE_API_KEY        — from plausible.io/settings/api
+  #   PLAUSIBLE_SITE_ID        — your domain as registered in Plausible (e.g. yoursite.com)
 
 [[headers]]
   for = "/*"
@@ -23,6 +30,23 @@
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
+  status = 200
+
+# Admin SPA — serve index.html for /admin and /admin/
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/"
+  to = "/admin/index.html"
+  status = 200
+
+# Stripe webhook — clean URL for the webhook endpoint
+[[redirects]]
+  from = "/stripe-webhook"
+  to = "/.netlify/functions/stripe-webhook"
   status = 200
 
 [[redirects]]
