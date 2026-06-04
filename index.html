@@ -317,5 +317,30 @@
       }, 100);
     });
   </script>
+
+  <!-- Netlify Identity: catches email confirmation/recovery tokens and redirects to admin -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        if (!user) {
+          // Check if URL has an identity token (invite, recovery, confirmation)
+          const hash = window.location.hash;
+          if (hash && (hash.includes('access_token') || hash.includes('confirmation_token') || hash.includes('recovery_token') || hash.includes('invite_token'))) {
+            // Widget will handle the token automatically; after it does, redirect to admin
+            window.netlifyIdentity.on('login', () => {
+              window.location.href = '/admin/index.html';
+            });
+          }
+        } else {
+          // Already logged in and landed on homepage via email link — go to admin
+          const hash = window.location.hash;
+          if (hash && hash.includes('access_token')) {
+            window.location.href = '/admin/index.html';
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
