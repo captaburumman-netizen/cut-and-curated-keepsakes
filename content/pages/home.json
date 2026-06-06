@@ -40,10 +40,26 @@
         "eyebrow": "The process",
         "heading": "How it works",
         "items": [
-          {"icon":"search","heading":"Browse & Choose","text":"Explore the shop and find a piece that speaks to you — or request something completely custom."},
-          {"icon":"edit","heading":"Personalize It","text":"Add names, dates, colors, and details that make it uniquely yours."},
-          {"icon":"package","heading":"Handcrafted for You","text":"Every item is made to order. No warehouses. Just me and my craft supplies."},
-          {"icon":"heart","heading":"Delivered with Love","text":"Your piece arrives packaged with care, ready to gift or treasure."}
+          {
+            "icon": "search",
+            "heading": "Browse & Choose",
+            "text": "Explore the shop and find a piece that speaks to you — or request something completely custom."
+          },
+          {
+            "icon": "edit",
+            "heading": "Personalize It",
+            "text": "Add names, dates, colors, and details that make it uniquely yours."
+          },
+          {
+            "icon": "package",
+            "heading": "Handcrafted for You",
+            "text": "Every item is made to order. No warehouses. Just me and my craft supplies."
+          },
+          {
+            "icon": "heart",
+            "heading": "Delivered with Love",
+            "text": "Your piece arrives packaged with care, ready to gift or treasure."
+          }
         ]
       }
     },
@@ -56,9 +72,24 @@
         "eyebrow": "Happy customers",
         "heading": "What people are saying",
         "items": [
-          {"name":"Jessica M.","location":"Edmond, OK","rating":5,"text":"I ordered a birth stat plaque for my sister's new baby and she absolutely CRIED. The quality and detail are incredible. Will be ordering again for every baby shower from now on!"},
-          {"name":"Taylor R.","location":"Oklahoma City, OK","rating":5,"text":"The personalized keychains were such a hit for my bridesmaids! Every single one of them loved theirs. Fast shipping, beautiful packaging, and the most thoughtful gift."},
-          {"name":"Amanda K.","location":"Edmond, OK","rating":5,"text":"I've ordered three times now and every piece is better than the last. The resin work is just stunning in person. Photos don't do it justice."}
+          {
+            "name": "Jessica M.",
+            "location": "Edmond, OK",
+            "rating": 5,
+            "text": "I ordered a birth stat plaque for my sister's new baby and she absolutely CRIED. The quality and detail are incredible. Will be ordering again for every baby shower from now on!"
+          },
+          {
+            "name": "Taylor R.",
+            "location": "Oklahoma City, OK",
+            "rating": 5,
+            "text": "The personalized keychains were such a hit for my bridesmaids! Every single one of them loved theirs. Fast shipping, beautiful packaging, and the most thoughtful gift."
+          },
+          {
+            "name": "Amanda K.",
+            "location": "Edmond, OK",
+            "rating": 5,
+            "text": "I've ordered three times now and every piece is better than the last. The resin work is just stunning in person. Photos don't do it justice."
+          }
         ]
       }
     },
