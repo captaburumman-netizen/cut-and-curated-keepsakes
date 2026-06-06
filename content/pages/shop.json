@@ -1,0 +1,17 @@
+{
+  "pageId": "shop",
+  "pageTitle": "Shop",
+  "sections": [
+    {
+      "id": "shop-hero",
+      "type": "page-header",
+      "label": "Page Header",
+      "visible": true,
+      "settings": {
+        "eyebrow": "Handmade with love",
+        "heading": "Shop the Collection",
+        "subheading": "Every piece is made to order, just for you."
+      }
+    }
+  ]
+}

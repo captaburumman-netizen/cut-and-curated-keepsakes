@@ -1,0 +1,39 @@
+{
+  "pageId": "about",
+  "pageTitle": "About",
+  "sections": [
+    {
+      "id": "story",
+      "type": "text-image",
+      "label": "Our Story",
+      "visible": true,
+      "settings": {
+        "eyebrow": "Hi, I'm [Your Name]!",
+        "heading": "Every piece starts with a person.",
+        "body": "I started Cut & Curated Keepsakes because I believe the gifts that matter most are the ones made for you — not pulled off a shelf, but thought about, crafted, and created with a specific person in mind.\n\nWhat started as a hobby — pouring resin at my kitchen table late at night — turned into something I couldn't stop doing. Every time I saw someone's face when they received a personalized piece, I knew this was more than a hobby. It was a calling.\n\nI'm based in Edmond, Oklahoma, and I make every single item by hand. There's no assembly line here. Just me, my craft supplies, and a whole lot of love.\n\nThank you for supporting a small business. It genuinely means everything.",
+        "image": "images/about-maker.jpg",
+        "imageAlt": "The maker behind Cut & Curated Keepsakes",
+        "layout": "image-left",
+        "primaryText": "Shop the Collection",
+        "primaryLink": "shop.html",
+        "secondaryText": "Request Something Custom",
+        "secondaryLink": "custom-orders.html"
+      }
+    },
+    {
+      "id": "values",
+      "type": "icons-text",
+      "label": "Values",
+      "visible": true,
+      "settings": {
+        "eyebrow": "What I believe",
+        "heading": "The values behind every piece",
+        "items": [
+          {"icon":"heart","heading":"Made with intention","text":"Every piece I create is made thoughtfully, with the recipient in mind from start to finish."},
+          {"icon":"clock","heading":"Worth the wait","text":"Made-to-order means your piece is never sitting in a warehouse. It's made fresh, just for you."},
+          {"icon":"users","heading":"Community first","text":"I'm proud to be a local Edmond business. When you shop with me, you're supporting a real person."}
+        ]
+      }
+    }
+  ]
+}

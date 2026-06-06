@@ -659,6 +659,273 @@
       .stat-grid { grid-template-columns: 1fr; }
       .login-card { padding: 40px 24px; }
     }
+
+    /* ── Pages / Content Manager ─────────────────────────────────────── */
+    .pages-list-view, .pages-editor-view, .global-editor-view { display: block; }
+    .pages-list-view.hidden, .pages-editor-view.hidden, .global-editor-view.hidden { display: none; }
+
+    .page-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 900px) { .page-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .page-cards-grid { grid-template-columns: 1fr; } }
+
+    .page-card {
+      background: var(--white);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1.5px solid var(--border-light);
+      transition: box-shadow .18s;
+    }
+    .page-card:hover { box-shadow: var(--shadow-md); }
+    .page-card-title { font-family: var(--font-h); font-size: 1.15rem; font-weight: 600; color: var(--text); }
+    .page-card-meta { font-size: .78rem; color: var(--text-muted); }
+    .page-card-actions { display: flex; gap: 8px; margin-top: 4px; }
+
+    .pages-editor-header, .global-editor-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .pages-editor-title { font-family: var(--font-h); font-size: 1.55rem; font-weight: 600; flex: 1; }
+
+    .section-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .section-item {
+      background: var(--white);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border-light);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: default;
+      transition: box-shadow .15s, border-color .15s;
+    }
+    .section-item.drag-over { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold-pale); }
+    .section-item.dragging { opacity: .45; }
+
+    .drag-handle {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      cursor: grab;
+      padding: 0 4px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .drag-handle:active { cursor: grabbing; }
+
+    .section-item-label { font-weight: 500; font-size: .9rem; flex: 1; }
+    .section-type-badge {
+      font-size: .7rem;
+      background: var(--lavender-light);
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-family: var(--font-b);
+      white-space: nowrap;
+    }
+
+    .visibility-toggle {
+      width: 36px; height: 20px;
+      background: var(--border);
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      transition: background .2s;
+      flex-shrink: 0;
+      border: none;
+    }
+    .visibility-toggle.on { background: var(--gold); }
+    .visibility-toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 14px; height: 14px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform .2s;
+    }
+    .visibility-toggle.on::after { transform: translateX(16px); }
+
+    .section-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    /* Section editor panel */
+    .section-editor-panel {
+      background: var(--white);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-md);
+      border: 1.5px solid var(--border-light);
+      padding: 24px;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .section-editor-panel.open { display: block; }
+    .section-editor-panel-title {
+      font-family: var(--font-h);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Items list inside section editor (icons-text, testimonials, etc.) */
+    .editor-items-list { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+    .editor-item-card {
+      border: 1.5px solid var(--border-light);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: var(--cream);
+      position: relative;
+    }
+    .editor-item-card .remove-item-btn {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 2px 6px;
+    }
+    .editor-item-card .remove-item-btn:hover { color: #c62828; }
+
+    /* Global editor tabs */
+    .global-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border-light); margin-bottom: 22px; }
+    .global-tab {
+      padding: 10px 20px;
+      font-size: .85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color .15s, border-color .15s;
+    }
+    .global-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    .global-tab-panel { display: none; }
+    .global-tab-panel.active { display: block; }
+
+    /* Nav links list / footer links list */
+    .link-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .link-list-item {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .link-list-item .form-input { flex: 1; }
+    .link-list-item .remove-link-btn {
+      background: none; border: none; color: var(--text-light);
+      cursor: pointer; font-size: 1.1rem; padding: 4px 6px; flex-shrink: 0;
+    }
+    .link-list-item .remove-link-btn:hover { color: #c62828; }
+
+    /* Publish bar */
+    .publish-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--text);
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-size: .9rem;
+      font-weight: 500;
+      transform: translateY(100%);
+      transition: transform .3s ease;
+      z-index: 2000;
+    }
+    .publish-bar.visible { transform: translateY(0); }
+    .publish-bar.success { background: #2e7d32; }
+    .publish-bar.error { background: #c62828; }
+
+    /* Media modal */
+    .media-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(42,26,46,.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      display: none;
+    }
+    .media-modal-backdrop.open { display: flex; }
+    .media-modal {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: var(--shadow-md);
+      padding: 28px 28px 24px;
+      width: 100%;
+      max-width: 440px;
+    }
+    .media-modal-title { font-family: var(--font-h); font-size: 1.2rem; font-weight: 600; margin-bottom: 18px; }
+    .media-preview { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; display: none; }
+    .media-url-display {
+      font-size: .8rem;
+      word-break: break-all;
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 8px;
+      display: none;
+      color: var(--text-muted);
+    }
+
+    /* Add section dropdown */
+    .add-section-wrap { position: relative; display: inline-block; }
+    .add-section-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      background: var(--white);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-md);
+      border: 1.5px solid var(--border-light);
+      min-width: 220px;
+      z-index: 100;
+      display: none;
+      overflow: hidden;
+    }
+    .add-section-dropdown.open { display: block; }
+    .add-section-option {
+      padding: 10px 16px;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .add-section-option:hover { background: var(--gold-pale); }
+
+    /* Product checkboxes for featured-collection editor */
+    .product-checkbox-list {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1.5px solid var(--border-light);
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .product-checkbox-item { display: flex; align-items: center; gap: 8px; font-size: .85rem; }
+    .product-checkbox-item input[type=checkbox] { accent-color: var(--gold); }
   </style>
 </head>
 <body>
@@ -735,6 +1002,10 @@
           <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
         </svg>
         Analytics
+      </div>
+      <div class="nav-item" data-section="pages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Pages
       </div>
     </nav>
     <div class="sidebar-footer">
@@ -920,6 +1191,201 @@
       </div>
     </section>
 
+    <!-- ───── PAGES / CONTENT ───── -->
+    <section class="section" id="section-pages">
+      <h1 class="section-title">Pages / Content</h1>
+      <p class="section-sub">Edit the content of your site pages.</p>
+
+      <!-- Pages list view -->
+      <div id="pages-list-view" class="pages-list-view">
+        <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;align-items:center;">
+          <button class="btn btn-outline" onclick="PagesManager.openGlobalEditor()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+            Global Settings
+          </button>
+        </div>
+        <div class="page-cards-grid" id="page-cards-grid">
+          <div class="loading"><div class="loading-spinner"></div></div>
+        </div>
+      </div>
+
+      <!-- Page editor view -->
+      <div id="pages-editor-view" class="pages-editor-view hidden">
+        <div class="pages-editor-header">
+          <button class="btn btn-outline btn-sm" onclick="PagesManager.backToList()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+          <div class="pages-editor-title" id="pages-editor-title">Page</div>
+          <div style="display:flex;gap:8px;margin-left:auto;flex-wrap:wrap;">
+            <a id="pages-preview-link" href="#" target="_blank" class="btn btn-outline btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Preview
+            </a>
+            <div class="add-section-wrap">
+              <button class="btn btn-outline btn-sm" onclick="PagesManager.toggleAddSectionDropdown()" id="add-section-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M12 4v16m-8-8h16"/></svg>
+                Add Section
+              </button>
+              <div class="add-section-dropdown" id="add-section-dropdown">
+                <div class="add-section-option" onclick="PagesManager.addSection('hero')">Hero Banner</div>
+                <div class="add-section-option" onclick="PagesManager.addSection('page-header')">Page Header</div>
+                <div class="add-section-option" onclick="PagesManager.addSection('featured-collection')">Featured Collection</div>
+                <div class="add-section-option" onclick="PagesManager.addSection('icons-text')">Icons + Text</div>
+                <div class="add-section-option" onclick="PagesManager.addSection('text-image')">Text + Image</div>
+                <div class="add-section-option" onclick="PagesManager.addSection('text-block')">Text Block</div>
+                <div class="add-section-option" onclick="PagesManager.addSection('testimonials')">Testimonials</div>
+                <div class="add-section-option" onclick="PagesManager.addSection('newsletter')">Newsletter / CTA</div>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="PagesManager.saveAndPublish()" id="pages-publish-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M5 13l4 4L19 7"/></svg>
+              Save &amp; Publish
+            </button>
+          </div>
+        </div>
+
+        <!-- Section editor panel (shown when editing a section) -->
+        <div class="section-editor-panel" id="section-editor-panel">
+          <div class="section-editor-panel-title">
+            <span id="section-editor-panel-label">Edit Section</span>
+            <button class="btn btn-outline btn-sm" onclick="PagesManager.closeSectionEditor()">Close</button>
+          </div>
+          <div id="section-editor-fields"></div>
+          <div style="margin-top:18px;display:flex;gap:8px;">
+            <button class="btn btn-primary btn-sm" onclick="PagesManager.saveSectionEdit()">Save Changes</button>
+            <button class="btn btn-outline btn-sm" onclick="PagesManager.closeSectionEditor()">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Section list -->
+        <div class="section-list" id="section-list"></div>
+
+        <div id="section-list-empty" style="display:none;text-align:center;padding:32px;color:var(--text-muted);font-size:.9rem;">
+          No sections yet. Use "Add Section" to get started.
+        </div>
+      </div>
+
+      <!-- Global settings editor view -->
+      <div id="global-editor-view" class="global-editor-view hidden">
+        <div class="global-editor-header">
+          <button class="btn btn-outline btn-sm" onclick="PagesManager.backToList()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+          <div class="pages-editor-title">Global Settings</div>
+          <div style="margin-left:auto;">
+            <button class="btn btn-primary btn-sm" onclick="PagesManager.saveGlobal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px"><path d="M5 13l4 4L19 7"/></svg>
+              Save &amp; Publish
+            </button>
+          </div>
+        </div>
+        <div class="global-tabs">
+          <button class="global-tab active" onclick="PagesManager.switchGlobalTab('announcement')">Announcement</button>
+          <button class="global-tab" onclick="PagesManager.switchGlobalTab('header')">Header</button>
+          <button class="global-tab" onclick="PagesManager.switchGlobalTab('footer')">Footer</button>
+        </div>
+        <!-- Announcement Bar -->
+        <div class="global-tab-panel active" id="global-tab-announcement">
+          <div class="form-group">
+            <label class="form-label">
+              <span>Visible</span>
+              <button type="button" class="visibility-toggle" id="ann-visible-toggle" onclick="PagesManager.toggleAnnVisible()" style="margin-left:10px;vertical-align:middle;"></button>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Text</label>
+            <input type="text" class="form-input" id="ann-text" placeholder="Free local pickup in Edmond & OKC!" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Link (optional)</label>
+            <input type="url" class="form-input" id="ann-link" placeholder="https://..." />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Background Color</label>
+              <input type="color" class="form-input" id="ann-bgcolor" value="#C4973F" style="height:38px;padding:4px 6px;" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Text Color</label>
+              <input type="color" class="form-input" id="ann-textcolor" value="#ffffff" style="height:38px;padding:4px 6px;" />
+            </div>
+          </div>
+        </div>
+        <!-- Header -->
+        <div class="global-tab-panel" id="global-tab-header">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Logo Text</label>
+              <input type="text" class="form-input" id="hdr-logotext" placeholder="Cut & Curated" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Logo Sub</label>
+              <input type="text" class="form-input" id="hdr-logosub" placeholder="Keepsakes" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Logo Image URL</label>
+            <div style="display:flex;gap:8px;">
+              <input type="url" class="form-input" id="hdr-logoimage" placeholder="https://..." />
+              <button class="btn btn-outline btn-sm" onclick="PagesManager.openMediaPicker(url => { document.getElementById('hdr-logoimage').value = url; })">Upload</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nav Links</label>
+            <div class="link-list" id="hdr-navlinks-list"></div>
+            <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="PagesManager.addNavLink()">+ Add Link</button>
+          </div>
+        </div>
+        <!-- Footer -->
+        <div class="global-tab-panel" id="global-tab-footer">
+          <div class="form-group">
+            <label class="form-label">Tagline</label>
+            <input type="text" class="form-input" id="ftr-tagline" placeholder="Made by hand, made for you." />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Instagram URL</label>
+              <input type="url" class="form-input" id="ftr-instagram" placeholder="https://instagram.com/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Facebook URL</label>
+              <input type="url" class="form-input" id="ftr-facebook" placeholder="https://facebook.com/..." />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">TikTok URL</label>
+              <input type="url" class="form-input" id="ftr-tiktok" placeholder="https://tiktok.com/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" id="ftr-email" placeholder="hello@..." />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-input" id="ftr-phone" placeholder="+1 405 555 0000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Copyright</label>
+            <input type="text" class="form-input" id="ftr-copyright" placeholder="© 2025 Cut & Curated Keepsakes. All rights reserved." />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Footer Columns</label>
+            <div id="ftr-columns-list"></div>
+            <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="PagesManager.addFooterColumn()">+ Add Column</button>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Policy Links</label>
+            <div class="link-list" id="ftr-policylinks-list"></div>
+            <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="PagesManager.addPolicyLink()">+ Add Policy Link</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main><!-- /main -->
 </div><!-- /app -->
 
@@ -988,6 +1454,37 @@
       <button class="btn btn-outline" onclick="closeOrderModal()">Close</button>
     </div>
   </div>
+</div>
+
+<!-- ══════════════ MEDIA UPLOAD MODAL ══════════════ -->
+<div class="media-modal-backdrop" id="media-modal">
+  <div class="media-modal">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <div class="media-modal-title">Upload Image</div>
+      <button class="modal-close" onclick="PagesManager.closeMediaModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="media-not-configured" style="display:none;background:var(--gold-pale);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-muted);margin-bottom:14px;">
+      Cloudinary is not configured. Set <code>CLOUDINARY_CLOUD_NAME</code>, <code>CLOUDINARY_API_KEY</code>, and <code>CLOUDINARY_API_SECRET</code> in Netlify environment variables to enable image uploads.
+    </div>
+    <img id="media-preview" class="media-preview" src="" alt="Preview" />
+    <div class="form-group">
+      <label class="form-label">Select Image</label>
+      <input type="file" class="form-input" id="media-file-input" accept="image/*" onchange="PagesManager.onMediaFileSelect(this)" style="padding:6px;" />
+    </div>
+    <div id="media-url-display" class="media-url-display"></div>
+    <div style="display:flex;gap:8px;margin-top:16px;">
+      <button class="btn btn-primary" id="media-upload-btn" onclick="PagesManager.doUpload()" disabled>Upload</button>
+      <button class="btn btn-outline" onclick="PagesManager.closeMediaModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PUBLISH BAR ══════════════ -->
+<div class="publish-bar" id="publish-bar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px" id="publish-bar-icon"><path d="M5 13l4 4L19 7"/></svg>
+  <span id="publish-bar-text">Saving...</span>
 </div>
 
 <!-- ══════════════ TOAST CONTAINER ══════════════ -->
@@ -1100,6 +1597,7 @@ function showSection(name) {
   if (name === 'orders') loadOrders();
   if (name === 'stats') loadStats();
   if (name === 'analytics') loadAnalytics();
+  if (name === 'pages') PagesManager.init();
   // Close mobile sidebar
   if (window.innerWidth <= 768) closeSidebar();
 }
@@ -1705,6 +2203,961 @@ function esc(str) {
     .replace(/'/g, '&#39;');
 }
 
+// ── PagesManager ──────────────────────────────────────────────────────
+const PagesManager = (() => {
+  // State
+  let currentPageId = null;
+  let currentSections = [];
+  let currentGlobal = null;
+  let isDirty = false;
+  let editingSectionIndex = null;
+  let mediaCallback = null;
+  let mediaFile = null;
+  let _initialized = false;
+  let _annVisible = false;
+
+  // ── Icon SVGs for type badges ──
+  const SECTION_TYPE_LABELS = {
+    'hero': 'Hero Banner',
+    'page-header': 'Page Header',
+    'featured-collection': 'Featured Collection',
+    'icons-text': 'Icons + Text',
+    'text-image': 'Text + Image',
+    'text-block': 'Text Block',
+    'testimonials': 'Testimonials',
+    'newsletter': 'Newsletter / CTA',
+  };
+
+  const PAGE_PREVIEW_URLS = {
+    'home': 'index.html',
+    'shop': 'shop.html',
+    'about': 'about.html',
+    'contact': 'contact.html',
+    'custom-orders': 'custom-orders.html',
+  };
+
+  // ── Blank section templates ──
+  function blankSection(type) {
+    const id = type + '-' + Date.now();
+    const label = SECTION_TYPE_LABELS[type] || type;
+    const base = { id, type, label, visible: true };
+    const defaults = {
+      'hero': { eyebrow: '', heading: '', subheading: '', primaryText: 'Shop Now', primaryLink: 'shop.html', secondaryText: '', secondaryLink: '', backgroundImage: '' },
+      'page-header': { eyebrow: '', heading: '', subheading: '' },
+      'featured-collection': { eyebrow: '', heading: 'Featured Products', productIds: [], viewAllText: 'View All', viewAllLink: 'shop.html' },
+      'icons-text': { eyebrow: '', heading: '', items: [{ icon: 'heart', heading: '', text: '' }] },
+      'text-image': { eyebrow: '', heading: '', body: '', image: '', imageAlt: '', layout: 'image-left', primaryText: '', primaryLink: '', secondaryText: '', secondaryLink: '' },
+      'text-block': { heading: '', body: '', email: '', instagram: '', responseTime: '' },
+      'testimonials': { eyebrow: '', heading: '', items: [{ name: '', location: '', rating: 5, text: '' }] },
+      'newsletter': { heading: '', subheading: '', buttonText: 'Subscribe', placeholder: 'Your email address' },
+    };
+    base.settings = defaults[type] || {};
+    return base;
+  }
+
+  // ── init ──
+  function init() {
+    if (_initialized) return;
+    _initialized = true;
+    loadPagesList();
+  }
+
+  // ── Reset init so switching away and back reloads ──
+  function resetInit() { _initialized = false; }
+
+  // ── Load pages list ──
+  async function loadPagesList() {
+    showView('list');
+    const grid = document.getElementById('page-cards-grid');
+    grid.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+    try {
+      const pages = await apiContent('content-pages');
+      if (!Array.isArray(pages) || pages.length === 0) {
+        grid.innerHTML = '<div style="color:var(--text-muted);padding:16px;">No pages found. Check GitHub token and repo settings.</div>';
+        return;
+      }
+      grid.innerHTML = pages.map(p => `
+        <div class="page-card">
+          <div class="page-card-title">${esc(p.pageTitle || p.pageId)}</div>
+          <div class="page-card-meta">${(p.sections || []).length} section${(p.sections || []).length === 1 ? '' : 's'}</div>
+          <div class="page-card-actions">
+            <button class="btn btn-primary btn-sm" onclick="PagesManager.openPageEditor('${esc(p.pageId)}')">Edit Page</button>
+          </div>
+        </div>
+      `).join('');
+    } catch (err) {
+      grid.innerHTML = `<div style="color:#c62828;padding:16px;">${esc(err.message)}</div>`;
+    }
+  }
+
+  // ── Open page editor ──
+  async function openPageEditor(pageId) {
+    currentPageId = pageId;
+    isDirty = false;
+    showView('editor');
+    document.getElementById('pages-editor-title').textContent = 'Loading…';
+    document.getElementById('section-list').innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+    closeSectionEditor();
+
+    const previewUrl = PAGE_PREVIEW_URLS[pageId] || (pageId + '.html');
+    document.getElementById('pages-preview-link').href = '../' + previewUrl;
+
+    try {
+      const data = await apiContent('content-pages?page=' + encodeURIComponent(pageId));
+      if (!data) throw new Error('Page not found');
+      currentSections = data.sections ? JSON.parse(JSON.stringify(data.sections)) : [];
+      document.getElementById('pages-editor-title').textContent = data.pageTitle || pageId;
+      renderSectionList();
+    } catch (err) {
+      document.getElementById('section-list').innerHTML = `<div style="color:#c62828;padding:16px;">${esc(err.message)}</div>`;
+    }
+  }
+
+  // ── Render section list ──
+  function renderSectionList() {
+    const list = document.getElementById('section-list');
+    const empty = document.getElementById('section-list-empty');
+    if (!currentSections.length) {
+      list.innerHTML = '';
+      empty.style.display = '';
+      return;
+    }
+    empty.style.display = 'none';
+    list.innerHTML = currentSections.map((sec, idx) => `
+      <div class="section-item" draggable="true" data-idx="${idx}"
+        ondragstart="PagesManager._onDragStart(event,${idx})"
+        ondragover="PagesManager._onDragOver(event,${idx})"
+        ondragleave="PagesManager._onDragLeave(event)"
+        ondrop="PagesManager._onDrop(event,${idx})">
+        <span class="drag-handle" title="Drag to reorder">⠿</span>
+        <span class="section-item-label">${esc(sec.label || sec.type)}</span>
+        <span class="section-type-badge">${esc(SECTION_TYPE_LABELS[sec.type] || sec.type)}</span>
+        <button class="visibility-toggle${sec.visible ? ' on' : ''}" title="${sec.visible ? 'Visible' : 'Hidden'}"
+          onclick="PagesManager.toggleSectionVisibility(${idx})"></button>
+        <div class="section-item-actions">
+          <button class="btn-icon" title="Edit" onclick="PagesManager.openSectionEditor(${idx})">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </button>
+          <button class="btn-icon" title="Delete" onclick="PagesManager.deleteSection(${idx})" style="color:#c62828">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ── Open section editor ──
+  async function openSectionEditor(idx) {
+    editingSectionIndex = idx;
+    const sec = currentSections[idx];
+    const panel = document.getElementById('section-editor-panel');
+    document.getElementById('section-editor-panel-label').textContent = 'Edit: ' + (sec.label || sec.type);
+    panel.classList.add('open');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    const s = sec.settings || {};
+    let html = '';
+
+    if (sec.type === 'hero') {
+      html = `
+        ${fieldText('Eyebrow', 'se-eyebrow', s.eyebrow || '')}
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        ${fieldText('Subheading', 'se-subheading', s.subheading || '')}
+        <div class="form-row">
+          ${fieldText('Primary Button Text', 'se-primaryText', s.primaryText || '')}
+          ${fieldText('Primary Button Link', 'se-primaryLink', s.primaryLink || '')}
+        </div>
+        <div class="form-row">
+          ${fieldText('Secondary Button Text', 'se-secondaryText', s.secondaryText || '')}
+          ${fieldText('Secondary Button Link', 'se-secondaryLink', s.secondaryLink || '')}
+        </div>
+        ${fieldImageUrl('Background Image', 'se-backgroundImage', s.backgroundImage || '')}
+      `;
+    } else if (sec.type === 'page-header') {
+      html = `
+        ${fieldText('Eyebrow', 'se-eyebrow', s.eyebrow || '')}
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        ${fieldText('Subheading', 'se-subheading', s.subheading || '')}
+      `;
+    } else if (sec.type === 'featured-collection') {
+      html = `
+        ${fieldText('Eyebrow', 'se-eyebrow', s.eyebrow || '')}
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        <div class="form-group">
+          <label class="form-label">Featured Products <span style="font-weight:400;color:var(--text-muted)">(check to include)</span></label>
+          <div class="product-checkbox-list" id="se-productIds-list">
+            <div style="color:var(--text-muted);font-size:.82rem;">Loading products…</div>
+          </div>
+        </div>
+        <div class="form-row">
+          ${fieldText('View All Text', 'se-viewAllText', s.viewAllText || 'View All')}
+          ${fieldText('View All Link', 'se-viewAllLink', s.viewAllLink || 'shop.html')}
+        </div>
+      `;
+    } else if (sec.type === 'icons-text') {
+      html = `
+        ${fieldText('Eyebrow', 'se-eyebrow', s.eyebrow || '')}
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        <div class="form-group">
+          <label class="form-label">Items</label>
+          <div class="editor-items-list" id="se-items-list">
+            ${(s.items || []).map((item, i) => renderIconTextItem(item, i)).join('')}
+          </div>
+          <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="PagesManager.addIconItem()">+ Add Item</button>
+        </div>
+      `;
+    } else if (sec.type === 'text-image') {
+      html = `
+        ${fieldText('Eyebrow', 'se-eyebrow', s.eyebrow || '')}
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        ${fieldTextarea('Body', 'se-body', s.body || '')}
+        ${fieldImageUrl('Image', 'se-image', s.image || '')}
+        ${fieldText('Image Alt Text', 'se-imageAlt', s.imageAlt || '')}
+        <div class="form-group">
+          <label class="form-label">Layout</label>
+          <div style="display:flex;gap:16px;margin-top:4px;">
+            <label style="display:flex;align-items:center;gap:6px;font-size:.86rem;">
+              <input type="radio" name="se-layout" value="image-left" ${s.layout !== 'image-right' ? 'checked' : ''}> Image Left
+            </label>
+            <label style="display:flex;align-items:center;gap:6px;font-size:.86rem;">
+              <input type="radio" name="se-layout" value="image-right" ${s.layout === 'image-right' ? 'checked' : ''}> Image Right
+            </label>
+          </div>
+        </div>
+        <div class="form-row">
+          ${fieldText('Primary Button Text', 'se-primaryText', s.primaryText || '')}
+          ${fieldText('Primary Button Link', 'se-primaryLink', s.primaryLink || '')}
+        </div>
+        <div class="form-row">
+          ${fieldText('Secondary Button Text', 'se-secondaryText', s.secondaryText || '')}
+          ${fieldText('Secondary Button Link', 'se-secondaryLink', s.secondaryLink || '')}
+        </div>
+      `;
+    } else if (sec.type === 'text-block') {
+      html = `
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        ${fieldTextarea('Body', 'se-body', s.body || '')}
+        ${fieldText('Email', 'se-email', s.email || '')}
+        ${fieldText('Instagram Handle', 'se-instagram', s.instagram || '')}
+        ${fieldText('Response Time', 'se-responseTime', s.responseTime || '')}
+      `;
+    } else if (sec.type === 'testimonials') {
+      html = `
+        ${fieldText('Eyebrow', 'se-eyebrow', s.eyebrow || '')}
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        <div class="form-group">
+          <label class="form-label">Testimonials</label>
+          <div class="editor-items-list" id="se-items-list">
+            ${(s.items || []).map((item, i) => renderTestimonialItem(item, i)).join('')}
+          </div>
+          <button class="btn btn-outline btn-sm" style="margin-top:8px;" onclick="PagesManager.addTestimonialItem()">+ Add Testimonial</button>
+        </div>
+      `;
+    } else if (sec.type === 'newsletter') {
+      html = `
+        ${fieldText('Heading', 'se-heading', s.heading || '')}
+        ${fieldText('Subheading', 'se-subheading', s.subheading || '')}
+        ${fieldText('Button Text', 'se-buttonText', s.buttonText || 'Subscribe')}
+        ${fieldText('Placeholder', 'se-placeholder', s.placeholder || 'Your email address')}
+      `;
+    } else {
+      html = `<div style="color:var(--text-muted);font-size:.85rem;">No editor available for type: ${esc(sec.type)}</div>`;
+    }
+
+    document.getElementById('section-editor-fields').innerHTML = html;
+
+    // Load products for featured-collection
+    if (sec.type === 'featured-collection') {
+      loadProductsForEditor(s.productIds || []);
+    }
+  }
+
+  function renderIconTextItem(item, i) {
+    const icons = ['heart','star','clock','users','package','search','edit','gift','sparkles'];
+    return `<div class="editor-item-card" id="se-icon-item-${i}">
+      <button class="remove-item-btn" onclick="PagesManager.removeIconItem(${i})">✕</button>
+      <div class="form-group">
+        <label class="form-label" style="font-size:.78rem;">Icon</label>
+        <select class="form-input" id="se-item-icon-${i}" style="font-size:.82rem;">
+          ${icons.map(ic => `<option value="${ic}" ${item.icon === ic ? 'selected' : ''}>${ic}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-size:.78rem;">Heading</label>
+        <input type="text" class="form-input" id="se-item-heading-${i}" value="${esc(item.heading || '')}" style="font-size:.82rem;" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-size:.78rem;">Text</label>
+        <textarea class="form-textarea" id="se-item-text-${i}" rows="2" style="font-size:.82rem;">${esc(item.text || '')}</textarea>
+      </div>
+    </div>`;
+  }
+
+  function renderTestimonialItem(item, i) {
+    return `<div class="editor-item-card" id="se-test-item-${i}">
+      <button class="remove-item-btn" onclick="PagesManager.removeTestimonialItem(${i})">✕</button>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" style="font-size:.78rem;">Name</label>
+          <input type="text" class="form-input" id="se-tname-${i}" value="${esc(item.name || '')}" style="font-size:.82rem;" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="font-size:.78rem;">Location</label>
+          <input type="text" class="form-input" id="se-tloc-${i}" value="${esc(item.location || '')}" style="font-size:.82rem;" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-size:.78rem;">Rating (1-5)</label>
+        <input type="number" class="form-input" id="se-trating-${i}" value="${item.rating || 5}" min="1" max="5" style="font-size:.82rem;width:80px;" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-size:.78rem;">Review Text</label>
+        <textarea class="form-textarea" id="se-ttext-${i}" rows="3" style="font-size:.82rem;">${esc(item.text || '')}</textarea>
+      </div>
+    </div>`;
+  }
+
+  async function loadProductsForEditor(selectedIds) {
+    const container = document.getElementById('se-productIds-list');
+    if (!container) return;
+    try {
+      const data = await api('admin-products');
+      const products = data.products || data || [];
+      if (!products.length) {
+        container.innerHTML = '<div style="color:var(--text-muted);font-size:.82rem;">No products found.</div>';
+        return;
+      }
+      container.innerHTML = products.map(p => `
+        <label class="product-checkbox-item">
+          <input type="checkbox" value="${esc(p.id)}" ${selectedIds.includes(p.id) ? 'checked' : ''} />
+          ${esc(p.name)}
+        </label>
+      `).join('');
+    } catch (e) {
+      container.innerHTML = `<div style="color:#c62828;font-size:.82rem;">${esc(e.message)}</div>`;
+    }
+  }
+
+  // ── Field helpers ──
+  function fieldText(label, id, value) {
+    return `<div class="form-group">
+      <label class="form-label">${esc(label)}</label>
+      <input type="text" class="form-input" id="${id}" value="${esc(value)}" />
+    </div>`;
+  }
+  function fieldTextarea(label, id, value) {
+    return `<div class="form-group">
+      <label class="form-label">${esc(label)}</label>
+      <textarea class="form-textarea" id="${id}" rows="4">${esc(value)}</textarea>
+    </div>`;
+  }
+  function fieldImageUrl(label, id, value) {
+    return `<div class="form-group">
+      <label class="form-label">${esc(label)}</label>
+      <div style="display:flex;gap:8px;">
+        <input type="url" class="form-input" id="${id}" value="${esc(value)}" placeholder="https://..." />
+        <button class="btn btn-outline btn-sm" type="button" onclick="PagesManager.openMediaPicker(url => { document.getElementById('${id}').value = url; })">Upload</button>
+      </div>
+    </div>`;
+  }
+
+  // ── Save section edit ──
+  function saveSectionEdit() {
+    if (editingSectionIndex === null) return;
+    const sec = currentSections[editingSectionIndex];
+    const s = sec.settings;
+    const get = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+
+    if (sec.type === 'hero') {
+      s.eyebrow = get('se-eyebrow'); s.heading = get('se-heading'); s.subheading = get('se-subheading');
+      s.primaryText = get('se-primaryText'); s.primaryLink = get('se-primaryLink');
+      s.secondaryText = get('se-secondaryText'); s.secondaryLink = get('se-secondaryLink');
+      s.backgroundImage = get('se-backgroundImage');
+    } else if (sec.type === 'page-header') {
+      s.eyebrow = get('se-eyebrow'); s.heading = get('se-heading'); s.subheading = get('se-subheading');
+    } else if (sec.type === 'featured-collection') {
+      s.eyebrow = get('se-eyebrow'); s.heading = get('se-heading');
+      s.viewAllText = get('se-viewAllText'); s.viewAllLink = get('se-viewAllLink');
+      const checkboxes = document.querySelectorAll('#se-productIds-list input[type=checkbox]:checked');
+      s.productIds = Array.from(checkboxes).map(cb => cb.value);
+    } else if (sec.type === 'icons-text') {
+      s.eyebrow = get('se-eyebrow'); s.heading = get('se-heading');
+      const items = [];
+      let i = 0;
+      while (document.getElementById('se-icon-item-' + i)) {
+        items.push({
+          icon: get('se-item-icon-' + i),
+          heading: get('se-item-heading-' + i),
+          text: get('se-item-text-' + i),
+        });
+        i++;
+      }
+      s.items = items;
+    } else if (sec.type === 'text-image') {
+      s.eyebrow = get('se-eyebrow'); s.heading = get('se-heading'); s.body = get('se-body');
+      s.image = get('se-image'); s.imageAlt = get('se-imageAlt');
+      const layoutEl = document.querySelector('input[name="se-layout"]:checked');
+      s.layout = layoutEl ? layoutEl.value : 'image-left';
+      s.primaryText = get('se-primaryText'); s.primaryLink = get('se-primaryLink');
+      s.secondaryText = get('se-secondaryText'); s.secondaryLink = get('se-secondaryLink');
+    } else if (sec.type === 'text-block') {
+      s.heading = get('se-heading'); s.body = get('se-body');
+      s.email = get('se-email'); s.instagram = get('se-instagram'); s.responseTime = get('se-responseTime');
+    } else if (sec.type === 'testimonials') {
+      s.eyebrow = get('se-eyebrow'); s.heading = get('se-heading');
+      const items = [];
+      let i = 0;
+      while (document.getElementById('se-test-item-' + i)) {
+        items.push({
+          name: get('se-tname-' + i),
+          location: get('se-tloc-' + i),
+          rating: parseInt(get('se-trating-' + i), 10) || 5,
+          text: get('se-ttext-' + i),
+        });
+        i++;
+      }
+      s.items = items;
+    } else if (sec.type === 'newsletter') {
+      s.heading = get('se-heading'); s.subheading = get('se-subheading');
+      s.buttonText = get('se-buttonText'); s.placeholder = get('se-placeholder');
+    }
+    isDirty = true;
+    closeSectionEditor();
+    renderSectionList();
+    toast('Section updated. Click "Save & Publish" to deploy.', 'success');
+  }
+
+  // ── Add / remove items inside icon-text editor ──
+  function addIconItem() {
+    const list = document.getElementById('se-items-list');
+    if (!list) return;
+    const items = list.querySelectorAll('.editor-item-card');
+    const idx = items.length;
+    const div = document.createElement('div');
+    div.innerHTML = renderIconTextItem({ icon: 'heart', heading: '', text: '' }, idx);
+    list.appendChild(div.firstElementChild);
+  }
+  function removeIconItem(i) {
+    const el = document.getElementById('se-icon-item-' + i);
+    if (el) el.remove();
+    // Re-index remaining items
+    reindexItems('se-icon-item-', removeIconItem, removeIconItem);
+  }
+  function addTestimonialItem() {
+    const list = document.getElementById('se-items-list');
+    if (!list) return;
+    const items = list.querySelectorAll('.editor-item-card');
+    const idx = items.length;
+    const div = document.createElement('div');
+    div.innerHTML = renderTestimonialItem({ name: '', location: '', rating: 5, text: '' }, idx);
+    list.appendChild(div.firstElementChild);
+  }
+  function removeTestimonialItem(i) {
+    const el = document.getElementById('se-test-item-' + i);
+    if (el) el.remove();
+  }
+
+  function reindexItems(prefix, removeFn) { /* items are collected by DOM scan on save */ }
+
+  // ── Add section ──
+  function addSection(type) {
+    currentSections.push(blankSection(type));
+    isDirty = true;
+    renderSectionList();
+    toggleAddSectionDropdown(true);
+    toast(`${SECTION_TYPE_LABELS[type] || type} section added. Edit it to configure.`, 'success');
+  }
+
+  // ── Toggle visibility ──
+  function toggleSectionVisibility(idx) {
+    currentSections[idx].visible = !currentSections[idx].visible;
+    isDirty = true;
+    renderSectionList();
+  }
+
+  // ── Delete section ──
+  function deleteSection(idx) {
+    const sec = currentSections[idx];
+    if (!confirm(`Delete "${sec.label || sec.type}"? This cannot be undone.`)) return;
+    currentSections.splice(idx, 1);
+    isDirty = true;
+    if (editingSectionIndex === idx) closeSectionEditor();
+    renderSectionList();
+  }
+
+  function closeSectionEditor() {
+    document.getElementById('section-editor-panel').classList.remove('open');
+    editingSectionIndex = null;
+  }
+
+  // ── Add/toggle section dropdown ──
+  function toggleAddSectionDropdown(forceClose) {
+    const dd = document.getElementById('add-section-dropdown');
+    if (forceClose) { dd.classList.remove('open'); return; }
+    dd.classList.toggle('open');
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.add-section-wrap')) {
+      const dd = document.getElementById('add-section-dropdown');
+      if (dd) dd.classList.remove('open');
+    }
+  });
+
+  // ── Drag and drop ──
+  let _dragIdx = null;
+  function _onDragStart(e, idx) {
+    _dragIdx = idx;
+    e.currentTarget.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  }
+  function _onDragOver(e, idx) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    document.querySelectorAll('.section-item').forEach(el => el.classList.remove('drag-over'));
+    e.currentTarget.classList.add('drag-over');
+  }
+  function _onDragLeave(e) {
+    e.currentTarget.classList.remove('drag-over');
+  }
+  function _onDrop(e, idx) {
+    e.preventDefault();
+    if (_dragIdx === null || _dragIdx === idx) {
+      document.querySelectorAll('.section-item').forEach(el => {
+        el.classList.remove('drag-over');
+        el.classList.remove('dragging');
+      });
+      return;
+    }
+    const moved = currentSections.splice(_dragIdx, 1)[0];
+    currentSections.splice(idx, 0, moved);
+    isDirty = true;
+    _dragIdx = null;
+    renderSectionList();
+  }
+
+  // ── Save and publish ──
+  async function saveAndPublish() {
+    const btn = document.getElementById('pages-publish-btn');
+    btn.disabled = true;
+    showPublishBar('publishing');
+    try {
+      const data = await apiContent('content-pages', 'GET', null, '?page=' + encodeURIComponent(currentPageId));
+      const existing = data || {};
+      const payload = { ...existing, pageId: currentPageId, sections: currentSections };
+      await apiContent('content-pages', 'POST', { pageId: currentPageId, content: payload });
+      // Trigger build hook
+      try { await apiContent('content-publish', 'POST', {}); } catch(e) { /* non-fatal */ }
+      isDirty = false;
+      showPublishBar('success');
+    } catch (err) {
+      showPublishBar('error', err.message);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  // ── Global settings ──
+  async function openGlobalEditor() {
+    showView('global');
+    switchGlobalTab('announcement');
+    try {
+      const data = await apiContent('content-pages?page=global');
+      currentGlobal = data || {};
+      populateGlobalForm(currentGlobal);
+    } catch (err) {
+      toast('Error loading global settings: ' + err.message, 'error');
+    }
+  }
+
+  function populateGlobalForm(g) {
+    const ann = g.announcementBar || {};
+    _annVisible = !!ann.visible;
+    const annBtn = document.getElementById('ann-visible-toggle');
+    if (annBtn) { annBtn.className = 'visibility-toggle' + (_annVisible ? ' on' : ''); }
+    document.getElementById('ann-text').value = ann.text || '';
+    document.getElementById('ann-link').value = ann.link || '';
+    document.getElementById('ann-bgcolor').value = ann.bgColor || '#C4973F';
+    document.getElementById('ann-textcolor').value = ann.textColor || '#ffffff';
+
+    const hdr = g.header || {};
+    document.getElementById('hdr-logotext').value = hdr.logoText || '';
+    document.getElementById('hdr-logosub').value = hdr.logoSub || '';
+    document.getElementById('hdr-logoimage').value = hdr.logoImage || '';
+    renderNavLinksList(hdr.navLinks || []);
+
+    const ftr = g.footer || {};
+    document.getElementById('ftr-tagline').value = ftr.tagline || '';
+    document.getElementById('ftr-instagram').value = ftr.instagram || '';
+    document.getElementById('ftr-facebook').value = ftr.facebook || '';
+    document.getElementById('ftr-tiktok').value = ftr.tiktok || '';
+    document.getElementById('ftr-email').value = ftr.email || '';
+    document.getElementById('ftr-phone').value = ftr.phone || '';
+    document.getElementById('ftr-copyright').value = ftr.copyright || '';
+    renderFooterColumns(ftr.columns || []);
+    renderPolicyLinks(ftr.policyLinks || []);
+  }
+
+  function renderNavLinksList(links) {
+    const container = document.getElementById('hdr-navlinks-list');
+    container.innerHTML = links.map((link, i) => `
+      <div class="link-list-item" id="hdr-navlink-${i}">
+        <input type="text" class="form-input" id="hdr-nl-label-${i}" value="${esc(link.label || '')}" placeholder="Label" />
+        <input type="text" class="form-input" id="hdr-nl-href-${i}" value="${esc(link.href || '')}" placeholder="href" />
+        <button class="remove-link-btn" onclick="PagesManager._removeNavLink(${i})">✕</button>
+      </div>
+    `).join('');
+  }
+  function addNavLink() {
+    const container = document.getElementById('hdr-navlinks-list');
+    const idx = container.querySelectorAll('.link-list-item').length;
+    const div = document.createElement('div');
+    div.innerHTML = `<div class="link-list-item" id="hdr-navlink-${idx}">
+      <input type="text" class="form-input" id="hdr-nl-label-${idx}" value="" placeholder="Label" />
+      <input type="text" class="form-input" id="hdr-nl-href-${idx}" value="" placeholder="href" />
+      <button class="remove-link-btn" onclick="PagesManager._removeNavLink(${idx})">✕</button>
+    </div>`;
+    container.appendChild(div.firstElementChild);
+  }
+  function _removeNavLink(i) {
+    const el = document.getElementById('hdr-navlink-' + i);
+    if (el) el.remove();
+  }
+
+  function renderFooterColumns(cols) {
+    const container = document.getElementById('ftr-columns-list');
+    container.innerHTML = cols.map((col, ci) => `
+      <div class="editor-item-card" id="ftr-col-${ci}" style="margin-bottom:10px;">
+        <button class="remove-item-btn" onclick="PagesManager._removeFooterCol(${ci})">✕</button>
+        <div class="form-group">
+          <label class="form-label" style="font-size:.78rem;">Column Heading</label>
+          <input type="text" class="form-input" id="ftr-col-heading-${ci}" value="${esc(col.heading || '')}" style="font-size:.82rem;" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="font-size:.78rem;">Links</label>
+          <div class="link-list" id="ftr-col-links-${ci}">
+            ${(col.links || []).map((lnk, li) => `
+              <div class="link-list-item" id="ftr-col-link-${ci}-${li}">
+                <input type="text" class="form-input" id="ftr-col-linklabel-${ci}-${li}" value="${esc(lnk.label || '')}" placeholder="Label" style="font-size:.82rem;" />
+                <input type="text" class="form-input" id="ftr-col-linkhref-${ci}-${li}" value="${esc(lnk.href || '')}" placeholder="href" style="font-size:.82rem;" />
+                <button class="remove-link-btn" onclick="PagesManager._removeColLink(${ci},${li})">✕</button>
+              </div>
+            `).join('')}
+          </div>
+          <button class="btn btn-outline btn-sm" style="margin-top:6px;font-size:.78rem;" onclick="PagesManager._addColLink(${ci})">+ Add Link</button>
+        </div>
+      </div>
+    `).join('');
+  }
+  function addFooterColumn() {
+    const container = document.getElementById('ftr-columns-list');
+    const ci = container.querySelectorAll('.editor-item-card').length;
+    const div = document.createElement('div');
+    div.innerHTML = `<div class="editor-item-card" id="ftr-col-${ci}" style="margin-bottom:10px;">
+      <button class="remove-item-btn" onclick="PagesManager._removeFooterCol(${ci})">✕</button>
+      <div class="form-group">
+        <label class="form-label" style="font-size:.78rem;">Column Heading</label>
+        <input type="text" class="form-input" id="ftr-col-heading-${ci}" value="" style="font-size:.82rem;" />
+      </div>
+      <div class="form-group">
+        <label class="form-label" style="font-size:.78rem;">Links</label>
+        <div class="link-list" id="ftr-col-links-${ci}"></div>
+        <button class="btn btn-outline btn-sm" style="margin-top:6px;font-size:.78rem;" onclick="PagesManager._addColLink(${ci})">+ Add Link</button>
+      </div>
+    </div>`;
+    container.appendChild(div.firstElementChild);
+  }
+  function _removeFooterCol(ci) {
+    const el = document.getElementById('ftr-col-' + ci);
+    if (el) el.remove();
+  }
+  function _addColLink(ci) {
+    const linkList = document.getElementById('ftr-col-links-' + ci);
+    if (!linkList) return;
+    const li = linkList.querySelectorAll('.link-list-item').length;
+    const div = document.createElement('div');
+    div.innerHTML = `<div class="link-list-item" id="ftr-col-link-${ci}-${li}">
+      <input type="text" class="form-input" id="ftr-col-linklabel-${ci}-${li}" placeholder="Label" style="font-size:.82rem;" />
+      <input type="text" class="form-input" id="ftr-col-linkhref-${ci}-${li}" placeholder="href" style="font-size:.82rem;" />
+      <button class="remove-link-btn" onclick="PagesManager._removeColLink(${ci},${li})">✕</button>
+    </div>`;
+    linkList.appendChild(div.firstElementChild);
+  }
+  function _removeColLink(ci, li) {
+    const el = document.getElementById('ftr-col-link-' + ci + '-' + li);
+    if (el) el.remove();
+  }
+
+  function renderPolicyLinks(links) {
+    const container = document.getElementById('ftr-policylinks-list');
+    container.innerHTML = links.map((link, i) => `
+      <div class="link-list-item" id="ftr-policy-${i}">
+        <input type="text" class="form-input" id="ftr-policy-label-${i}" value="${esc(link.label || '')}" placeholder="Label" />
+        <input type="text" class="form-input" id="ftr-policy-href-${i}" value="${esc(link.href || '')}" placeholder="href" />
+        <button class="remove-link-btn" onclick="PagesManager._removePolicyLink(${i})">✕</button>
+      </div>
+    `).join('');
+  }
+  function addPolicyLink() {
+    const container = document.getElementById('ftr-policylinks-list');
+    const i = container.querySelectorAll('.link-list-item').length;
+    const div = document.createElement('div');
+    div.innerHTML = `<div class="link-list-item" id="ftr-policy-${i}">
+      <input type="text" class="form-input" id="ftr-policy-label-${i}" value="" placeholder="Label" />
+      <input type="text" class="form-input" id="ftr-policy-href-${i}" value="" placeholder="href" />
+      <button class="remove-link-btn" onclick="PagesManager._removePolicyLink(${i})">✕</button>
+    </div>`;
+    container.appendChild(div.firstElementChild);
+  }
+  function _removePolicyLink(i) {
+    const el = document.getElementById('ftr-policy-' + i);
+    if (el) el.remove();
+  }
+
+  function toggleAnnVisible() {
+    _annVisible = !_annVisible;
+    const btn = document.getElementById('ann-visible-toggle');
+    if (btn) btn.className = 'visibility-toggle' + (_annVisible ? ' on' : '');
+  }
+
+  function switchGlobalTab(tab) {
+    document.querySelectorAll('.global-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.global-tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`.global-tab[onclick*="${tab}"]`)?.classList.add('active');
+    document.getElementById('global-tab-' + tab)?.classList.add('active');
+  }
+
+  async function saveGlobal() {
+    showPublishBar('publishing');
+    try {
+      const global = collectGlobalData();
+      await apiContent('content-pages', 'POST', { pageId: 'global', content: global });
+      try { await apiContent('content-publish', 'POST', {}); } catch(e) { /* non-fatal */ }
+      showPublishBar('success');
+    } catch (err) {
+      showPublishBar('error', err.message);
+    }
+  }
+
+  function collectGlobalData() {
+    const get = id => { const el = document.getElementById(id); return el ? el.value : ''; };
+    // Nav links
+    const navLinks = [];
+    let nli = 0;
+    while (document.getElementById('hdr-navlink-' + nli)) {
+      navLinks.push({ label: get('hdr-nl-label-' + nli), href: get('hdr-nl-href-' + nli) });
+      nli++;
+    }
+    // Footer columns
+    const columns = [];
+    let ci = 0;
+    while (document.getElementById('ftr-col-' + ci)) {
+      const links = [];
+      let li = 0;
+      while (document.getElementById('ftr-col-link-' + ci + '-' + li)) {
+        links.push({ label: get('ftr-col-linklabel-' + ci + '-' + li), href: get('ftr-col-linkhref-' + ci + '-' + li) });
+        li++;
+      }
+      columns.push({ heading: get('ftr-col-heading-' + ci), links });
+      ci++;
+    }
+    // Policy links
+    const policyLinks = [];
+    let pli = 0;
+    while (document.getElementById('ftr-policy-' + pli)) {
+      policyLinks.push({ label: get('ftr-policy-label-' + pli), href: get('ftr-policy-href-' + pli) });
+      pli++;
+    }
+    return {
+      announcementBar: {
+        visible: _annVisible,
+        text: get('ann-text'),
+        link: get('ann-link'),
+        bgColor: get('ann-bgcolor'),
+        textColor: get('ann-textcolor'),
+      },
+      header: {
+        logoText: get('hdr-logotext'),
+        logoSub: get('hdr-logosub'),
+        logoImage: get('hdr-logoimage'),
+        navLinks,
+      },
+      footer: {
+        tagline: get('ftr-tagline'),
+        instagram: get('ftr-instagram'),
+        facebook: get('ftr-facebook'),
+        tiktok: get('ftr-tiktok'),
+        email: get('ftr-email'),
+        phone: get('ftr-phone'),
+        columns,
+        policyLinks,
+        copyright: get('ftr-copyright'),
+      }
+    };
+  }
+
+  // ── View management ──
+  function showView(view) {
+    document.getElementById('pages-list-view').classList.toggle('hidden', view !== 'list');
+    document.getElementById('pages-editor-view').classList.toggle('hidden', view !== 'editor');
+    document.getElementById('global-editor-view').classList.toggle('hidden', view !== 'global');
+  }
+
+  function backToList() {
+    if (isDirty && !confirm('You have unsaved changes. Leave without saving?')) return;
+    isDirty = false;
+    currentPageId = null;
+    currentSections = [];
+    closeSectionEditor();
+    showView('list');
+    _initialized = false;
+    loadPagesList();
+  }
+
+  // ── API helpers specific to content ──
+  async function apiContent(path, method, body, qs) {
+    const token = await getToken();
+    const url = `/.netlify/functions/${path}${qs || ''}`;
+    const opts = {
+      method: method || 'GET',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+    };
+    if (body) opts.body = JSON.stringify(body);
+    const res = await fetch(url, opts);
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({ error: res.statusText }));
+      throw new Error(errData.error || `HTTP ${res.status}`);
+    }
+    return res.json();
+  }
+
+  // ── Publish bar ──
+  let _publishTimer = null;
+  function showPublishBar(status, msg) {
+    const bar = document.getElementById('publish-bar');
+    const text = document.getElementById('publish-bar-text');
+    const icon = document.getElementById('publish-bar-icon');
+    bar.className = 'publish-bar visible';
+    if (status === 'publishing') {
+      text.textContent = 'Saving & publishing…';
+      icon.innerHTML = '<circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="0"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="1s" repeatCount="indefinite"/></circle>';
+    } else if (status === 'success') {
+      bar.classList.add('success');
+      text.textContent = 'Published! Changes are live.';
+      icon.innerHTML = '<path d="M5 13l4 4L19 7"/>';
+      if (_publishTimer) clearTimeout(_publishTimer);
+      _publishTimer = setTimeout(() => { bar.classList.remove('visible', 'success', 'error'); }, 4000);
+    } else if (status === 'error') {
+      bar.classList.add('error');
+      text.textContent = 'Error: ' + (msg || 'Something went wrong.');
+      icon.innerHTML = '<path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>';
+      if (_publishTimer) clearTimeout(_publishTimer);
+      _publishTimer = setTimeout(() => { bar.classList.remove('visible', 'success', 'error'); }, 5000);
+    }
+  }
+
+  // ── Media / image upload ──
+  function openMediaPicker(callback) {
+    mediaCallback = callback;
+    mediaFile = null;
+    const modal = document.getElementById('media-modal');
+    modal.classList.add('open');
+    document.getElementById('media-file-input').value = '';
+    document.getElementById('media-preview').style.display = 'none';
+    document.getElementById('media-preview').src = '';
+    document.getElementById('media-url-display').style.display = 'none';
+    document.getElementById('media-upload-btn').disabled = true;
+    document.getElementById('media-not-configured').style.display = 'none';
+    // Check Cloudinary config
+    getToken().then(token => {
+      fetch('/.netlify/functions/media-upload', {
+        method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({})
+      }).then(r => r.json()).then(data => {
+        if (!data.configured) {
+          document.getElementById('media-not-configured').style.display = '';
+        }
+      }).catch(() => {});
+    });
+  }
+  function closeMediaModal() {
+    document.getElementById('media-modal').classList.remove('open');
+    mediaCallback = null;
+    mediaFile = null;
+  }
+  function onMediaFileSelect(input) {
+    const file = input.files[0];
+    if (!file) return;
+    mediaFile = file;
+    const preview = document.getElementById('media-preview');
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = '';
+    document.getElementById('media-upload-btn').disabled = false;
+  }
+  async function doUpload() {
+    if (!mediaFile) return;
+    const btn = document.getElementById('media-upload-btn');
+    btn.disabled = true;
+    btn.textContent = 'Uploading…';
+    try {
+      const url = await uploadToCloudinary(mediaFile);
+      const urlDisplay = document.getElementById('media-url-display');
+      urlDisplay.textContent = url;
+      urlDisplay.style.display = '';
+      if (mediaCallback) mediaCallback(url);
+      toast('Image uploaded successfully!', 'success');
+      closeMediaModal();
+    } catch (err) {
+      toast('Upload failed: ' + err.message, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Upload';
+    }
+  }
+  async function uploadToCloudinary(file) {
+    const token = await getToken();
+    const sigRes = await fetch('/.netlify/functions/media-upload', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({})
+    });
+    const sig = await sigRes.json();
+    if (!sig.configured) throw new Error('Cloudinary not configured. Set environment variables in Netlify.');
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('api_key', sig.apiKey);
+    formData.append('timestamp', sig.timestamp);
+    formData.append('signature', sig.signature);
+    formData.append('folder', sig.folder);
+    const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${sig.cloudName}/image/upload`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!uploadRes.ok) throw new Error('Cloudinary upload failed.');
+    const data = await uploadRes.json();
+    return data.secure_url;
+  }
+
+  // Close media modal on backdrop click
+  document.getElementById('media-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeMediaModal();
+  });
+
+  return {
+    init, loadPagesList, openPageEditor, openGlobalEditor, openSectionEditor,
+    saveSectionEdit, addSection, toggleSectionVisibility, deleteSection,
+    closeSectionEditor, saveAndPublish, saveGlobal, backToList,
+    toggleAddSectionDropdown, switchGlobalTab, toggleAnnVisible,
+    addNavLink, addFooterColumn, addPolicyLink,
+    _removeNavLink, _removeFooterCol, _addColLink, _removeColLink, _removePolicyLink,
+    addIconItem, removeIconItem, addTestimonialItem, removeTestimonialItem,
+    openMediaPicker, closeMediaModal, onMediaFileSelect, doUpload, uploadToCloudinary,
+    showPublishBar,
+    _onDragStart, _onDragOver, _onDragLeave, _onDrop,
+  };
+})();
+
 // Close modals on backdrop click
 document.getElementById('product-modal').addEventListener('click', function(e) {
   if (e.target === this) closeProductModal();
@@ -1718,6 +3171,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeProductModal();
     closeOrderModal();
+    PagesManager.closeMediaModal();
   }
 });
 

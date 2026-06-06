@@ -1,0 +1,17 @@
+{
+  "pageId": "custom-orders",
+  "pageTitle": "Custom Orders",
+  "sections": [
+    {
+      "id": "custom-hero",
+      "type": "page-header",
+      "label": "Page Header",
+      "visible": true,
+      "settings": {
+        "eyebrow": "Let's create something special",
+        "heading": "Request a Custom Order",
+        "subheading": "Have something specific in mind? I'd love to make it for you."
+      }
+    }
+  ]
+}

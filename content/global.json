@@ -1,0 +1,29 @@
+{
+  "announcementBar": { "visible": false, "text": "Free local pickup in Edmond & OKC!", "link": "", "bgColor": "#C4973F", "textColor": "#fff" },
+  "header": {
+    "logoText": "Cut & Curated",
+    "logoSub": "Keepsakes",
+    "logoImage": "",
+    "navLinks": [
+      {"label":"Home","href":"index.html"},
+      {"label":"Shop","href":"shop.html"},
+      {"label":"Custom Orders","href":"custom-orders.html"},
+      {"label":"About","href":"about.html"},
+      {"label":"Contact","href":"contact.html"}
+    ]
+  },
+  "footer": {
+    "tagline": "Made by hand, made for you.",
+    "instagram": "https://instagram.com/cutandcuratedks",
+    "facebook": "",
+    "tiktok": "",
+    "email": "hello@cutandcuratedks.com",
+    "phone": "",
+    "columns": [
+      { "heading": "Shop", "links": [{"label":"All Products","href":"shop.html"},{"label":"Custom Orders","href":"custom-orders.html"}] },
+      { "heading": "Info", "links": [{"label":"About","href":"about.html"},{"label":"Contact","href":"contact.html"},{"label":"FAQ","href":"contact.html#faq"}] }
+    ],
+    "policyLinks": [{"label":"Refund Policy","href":"#"},{"label":"Privacy Policy","href":"#"}],
+    "copyright": "© 2025 Cut & Curated Keepsakes. All rights reserved."
+  }
+}

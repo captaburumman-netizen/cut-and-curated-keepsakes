@@ -1,0 +1,19 @@
+{
+  "pageId": "contact",
+  "pageTitle": "Contact",
+  "sections": [
+    {
+      "id": "contact-info",
+      "type": "text-block",
+      "label": "Contact Info",
+      "visible": true,
+      "settings": {
+        "heading": "Get in touch",
+        "body": "Have a question about an order, want to discuss a custom piece, or just want to say hi? I'd love to hear from you.",
+        "email": "hello@cutandcuratedks.com",
+        "instagram": "@cutandcuratedks",
+        "responseTime": "1–2 business days"
+      }
+    }
+  ]
+}
